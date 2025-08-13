@@ -2,14 +2,14 @@ import os
 import sqlite3
 import pandas as pd
 from flask import Flask, request, jsonify
-from flask_cors import CORS  # Added for web compatibility
+from flask_cors import CORS
 from dotenv import load_dotenv
-from sarvamai import SarvamAI  # Sarvam AI SDK
+from sarvamai import SarvamAI
 
 load_dotenv()
 
 # Load environment variables - Fixed to match your .env file
-AUTH_TOKEN = os.getenv("PUCH_AUTH_TOKEN")  # Changed to match your .env
+AUTH_TOKEN = os.getenv("PUCH_AUTH_TOKEN")
 SARVAMAI_KEY = os.getenv("SARVAMAI_KEY")
 DATABASE_PATH = os.getenv("DATABASE_PATH", "./demo.db")
 PUCH_PHONE_NUMBER = os.getenv("PHONE_NUMBER")
@@ -29,9 +29,9 @@ def nl_to_sql_sarvam(nl_question: str, max_tokens: int = 100) -> str:
     conn = sqlite3.connect(DATABASE_PATH)
     cursor = conn.cursor()
     
-    # Get column names
+    # get column names
     cursor.execute("PRAGMA table_info(data)")
-    columns = [col[1] for col in cursor.fetchall()]  # Extract column names
+    columns = [col[1] for col in cursor.fetchall()]
     conn.close()
 
     prompt = (
@@ -161,6 +161,5 @@ def summarize_result():
         return jsonify({"error": f"Sarvam AI error: {str(e)}"}), 500
 
 if __name__ == "__main__":
-    # Only change: use Railway's PORT environment variable
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
