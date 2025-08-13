@@ -1,4 +1,4 @@
-# NL2SQL MCP Hackathon Starter
+# NL2SQL
 
 Welcome to VaaniDB... Your talking database tool that let's you practically chat with your data without needing any knowledge about SQL or any such complex technical jargon. Be it seeking information on sales, understanding your datasets better, or anything you can think of. All you need to do is upload your data to our system in the form of an Excel CSV file, and you are all set to chat with it in the language that makes you human-Natural Language! English, Hindi, Bangla... you name it!!!
 
